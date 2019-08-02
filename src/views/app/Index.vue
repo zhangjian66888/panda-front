@@ -1,10 +1,10 @@
 <template>
-  <div>home</div>
+  <div>app-index</div>
 </template>
 
 <script>
   export default {
-    name: "Home.vue"
+    name: "Index.vue"
   }
 </script>
 

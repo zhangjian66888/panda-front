@@ -17,7 +17,7 @@
 <style scoped>
   .pf-divider-line {
     width: 100%;
-    border-bottom: 1px #ddd;
+    border-bottom: 1px solid  #ddd;
   }
 
   .pf-divider-dotted {

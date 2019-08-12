@@ -8,6 +8,9 @@
         <slot></slot>
       </el-col>
     </el-row>
+    <el-row :class="footerClass ? footerClass : 'pf-panel-footer'">
+      <slot name="footer"></slot>
+    </el-row>
   </div>
 </template>
 
@@ -18,6 +21,7 @@
       panelClass: String,
       titleClass: String,
       bodyClass: String,
+      footerClass: String,
     },
     methods: {}
   }
@@ -48,5 +52,10 @@
     padding: 5px 10px;
     min-height: 80px;
     /*box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);*/
+  }
+
+  .pf-panel-footer {
+    border-top: 1px solid #ddd;
+    text-align: center;
   }
 </style>

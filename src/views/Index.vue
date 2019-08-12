@@ -64,7 +64,7 @@
       }
     },
     created: function () {
-      this.$router.push("/Home");
+      // this.$router.push("/Home");
     },
     methods: {
       showMenu: function () {

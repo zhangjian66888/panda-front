@@ -8,6 +8,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "/User",
+      name: "user",
+      component: () => import("./views/user/Index.vue")
+    },
+    {
       path: "/Home",
       name: "home",
       component: () => import("./views/Home.vue")
@@ -18,14 +23,19 @@ export default new Router({
       component: () => import("./views/app/Index.vue")
     },
     {
-      path: "/permission/Apply",
-      name: "permission-apply",
-      component: () => import("./views/permission/Apply.vue")
+      path: "/resource/Apply",
+      name: "resource-apply",
+      component: () => import("./views/resource/Apply.vue")
     },
     {
-      path: "/permission/Approval",
-      name: "permission-approval",
-      component: () => import("./views/permission/Approval.vue")
+      path: "/apply/Index",
+      name: "apply-index",
+      component: () => import("./views/apply/Index.vue")
+    },
+    {
+      path: "/approval/Index",
+      name: "approval-index",
+      component: () => import("./views/approval/Index.vue")
     },
   ]
 });

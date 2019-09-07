@@ -26,7 +26,6 @@
             <el-form-item label="应用:" prop="appCodes">
               <el-checkbox-group v-model="searchVo.appCodes">
                 <el-checkbox-button :label="item.id" v-for="item in apps">{{item.value}}</el-checkbox-button>
-
                 <el-button type="text" class="pf-search-more">更多</el-button>
               </el-checkbox-group>
             </el-form-item>
@@ -104,8 +103,8 @@
     name: "Apply.vue",
     data() {
       return {
-        searchUrl: '/panda/front/role/search',
-        submitApplyUrl: '/panda/front/role/apply',
+        searchUrl: '/panda/front/resource/search',
+        submitApplyUrl: '/panda/front/resource/apply',
         searchDisabled: false,
         saveDisabled: false,
         applyTags: [],
@@ -150,7 +149,6 @@
         }
       },
       search() {
-        console.log("-----------------", this.searchVo);
         const params = {
           pageSize: this.pagination.pageSize,
           current: this.pagination.current,
@@ -184,6 +182,7 @@
         });
       },
       resetApply() {
+        this.saveDisabled = false;
         this.applyTags = [];
       },
     }

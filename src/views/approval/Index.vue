@@ -155,6 +155,7 @@
         this.$set(this.approvalDto, 'applyState', state);
         console.log(this.approvalDto);
         _util.requestPost(this, this.approvalUrl, {...this.approvalDto}, (data) => {
+          this.detailVisible = false;
           this.search();
         });
       }

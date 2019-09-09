@@ -30,7 +30,8 @@
           header-row-class-name="pf-table-header"
           cell-class-name="pf-table-cell">
         <el-table-column prop="applicant" label="申请人" width="180"/>
-        <el-table-column prop="applyStateLabel" label="申请应用" width="180"/>
+        <el-table-column prop="appName" label="服务" width="180"/>
+        <el-table-column prop="applyStateLabel" label="状态" width="180"/>
         <el-table-column prop="createTime" label="申请时间" width="180"/>
         <el-table-column prop="updateTime" label="更新时间" width="180"/>
         <el-table-column fixed="right" label="操作">
@@ -58,9 +59,15 @@
 
     <el-dialog :visible.sync="detailVisible" title="审批" width="600px" class="pf-dialog-body">
       <el-row>
+        <el-col :span="3">申请人:</el-col>
+        <el-col :span="9">{{currentRow.applicant}}</el-col>
+        <el-col :span="3">服务:</el-col>
+        <el-col :span="9">{{currentRow.appName}}</el-col>
+      </el-row>
+      <el-row>
         <el-col :span="3">资源:</el-col>
         <el-col :span="21">
-          <el-tag v-for="role in roles">
+          <el-tag v-for="role in currentRow.roles">
             {{role.envName}}-{{role.roleName}}
           </el-tag>
         </el-col>
@@ -93,6 +100,7 @@
     data() {
       return {
         searchUrl: '/panda/front/applyRole/search',
+        approvalUrl: '/panda/front/applyRole/approval',
         searchDisabled: false,
         saveDisabled: false,
         searchVo: {
@@ -105,6 +113,7 @@
         pagination: {current: 1, pageSize: 20, total: 0},
         detailVisible: false,
         roles: [],
+        currentRow: {},
         approvalDto: {},
       }
     },
@@ -139,12 +148,15 @@
       },
       showApproval(row) {
         this.detailVisible = true;
-        this.roles = row.roles;
-        this.approvalDto = {id: row.id, approveOpinion: ''};
+        this.currentRow = row;
+        this.approvalDto = {approvalId: row.id, approveOpinion: ''};
       },
       approval(state) {
         this.$set(this.approvalDto, 'applyState', state);
         console.log(this.approvalDto);
+        _util.requestPost(this, this.approvalUrl, {...this.approvalDto}, (data) => {
+          this.search();
+        });
       }
     }
   }

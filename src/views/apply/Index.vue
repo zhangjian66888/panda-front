@@ -70,7 +70,7 @@
           <pf-divider height="20px"></pf-divider>
           <el-row>
             <el-col :span="2">应用:</el-col>
-            <el-col :span="6">{{item.applyAppName}}</el-col>
+            <el-col :span="6">{{item.appName}}</el-col>
             <el-col :span="2">状态:</el-col>
             <el-col :span="6">{{item.applyStateLabel}}</el-col>
             <el-col :span="8"></el-col>

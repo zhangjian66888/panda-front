@@ -1,5 +1,5 @@
 import Axios from "axios";
-import store from "@/store";
+import store from "./store";
 import {Message} from 'element-ui';
 
 const service = Axios.create({
@@ -18,10 +18,13 @@ service.interceptors.request.use(config => {
 
 service.interceptors.response.use(response => {
     if (response.data && response.data.code === 401) { // 401, token失效
-      store.dispatch('clearLoginInfo')
+      store.commit('clearLoginInfo')
     }
     return response
   }, error => {
+   if (error.response.status == 401){
+      store.commit('clearLoginInfo')
+     }
     Message({
       showClose: true,
       message: error.response.data,
